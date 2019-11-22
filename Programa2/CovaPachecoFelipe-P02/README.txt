@@ -1,0 +1,1 @@
+Ejecutar en la terminal el comando "java Main"
