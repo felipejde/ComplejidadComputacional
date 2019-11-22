@@ -1,0 +1,1493 @@
+//import
+import java.util.ArrayList;
+
+public class TSP{
+	
+	//Genera Matriz de 51x51 [Apendice A y B]
+	public int[][] generaMatriz(){
+		int[][] matriz = new int[51][51];
+
+		//diagonal tiene 0, pues el peso de (u,u) = 0 (solo por completez)
+		for (int i=0;i<51;i++)
+			matriz[i][i] = 0;
+
+		for (int i=0;i<51;i++) {
+			for (int j=0;j<51;j++) {
+				matriz[i][j] = -1;
+			}
+		}
+
+		//(1,0) -- (50,0)
+		matriz[1][0] = 908;
+		matriz[2][0] = 1513;
+		matriz[3][0] = 2007;
+		matriz[4][0] = 1193;
+		matriz[5][0] = 2258;
+		matriz[6][0] = 1117;
+		matriz[7][0] = 678;
+		matriz[8][0] = 306;
+		matriz[9][0] = 1651;
+		matriz[10][0] = 1703;
+		matriz[11][0] = 117;
+		matriz[12][0] = 1882;
+		matriz[13][0] = 1310;
+		matriz[14][0] = 3350;
+		matriz[15][0] = 889;
+		matriz[16][0] = 760;
+		matriz[17][0] = 2348;
+		matriz[18][0] = 4701;
+		matriz[19][0] = 782;
+		matriz[20][0] = 697;
+		matriz[21][0] = 1370;
+		matriz[22][0] = 1431;
+		matriz[23][0] = 1690;
+		matriz[24][0] = 3050;
+		matriz[25][0] = 395;
+		matriz[26][0] = 697;
+		matriz[27][0] = 1328;
+		matriz[28][0] = 2625;
+		matriz[29][0] = 1552;
+		matriz[30][0] = 828;
+		matriz[31][0] = 490;
+		matriz[32][0] = 1681;
+		matriz[33][0] = 481;
+		matriz[34][0] = 606;
+		matriz[35][0] = 1397;
+		matriz[36][0] = 659;
+		matriz[37][0] = 1244;
+		matriz[38][0] = 810;
+		matriz[39][0] = 881;
+		matriz[40][0] = 1109;
+		matriz[41][0] = 1145;
+		matriz[42][0] =	3237;
+		matriz[43][0] =	513;
+		matriz[44][0] =	461;
+		matriz[45][0] =	1407;
+		matriz[46][0] =	967;
+		matriz[47][0] =	760;
+		matriz[48][0] =	1126;
+		matriz[49][0] =	684;
+		matriz[50][0] = 1000;
+
+		//(2,1) -- (49,1)
+		matriz[2][1] = 1668;
+		matriz[3][1] = 2162;
+		matriz[4][1] = 1782;
+		matriz[5][1] = 1389;
+		matriz[6][1] = 515;
+		matriz[7][1] = 448;
+		matriz[8][1] = 602;
+		matriz[9][1] = 970;
+		matriz[10][1] = 1858;
+		matriz[11][1] =	791;
+		matriz[12][1] = 1013;
+		matriz[13][1] = 441;
+		matriz[14][1] = 2709;
+		matriz[15][1] = 246;
+		matriz[16][1] = 181;
+		matriz[17][1] = 1707;
+		matriz[18][1] =	4060;
+		matriz[19][1] =	127;
+		matriz[20][1] =	546;
+		matriz[21][1] =	928;
+		matriz[22][1] =	750;
+		matriz[23][1] =	1845;
+		matriz[24][1] =	2409;
+		matriz[25][1] =	513;
+		matriz[26][1] =	316;
+		matriz[27][1] =	600;
+		matriz[28][1] =	1984;
+		matriz[29][1] =	824;
+		matriz[30][1] =	983;
+		matriz[31][1] =	540;
+		matriz[32][1] =	948;
+		matriz[33][1] =	636;
+		matriz[34][1] =	302;
+		matriz[35][1] =	826;
+		matriz[36][1] =	1254;
+		matriz[37][1] =	511;
+		matriz[38][1] =	171;
+		matriz[39][1] =	572;
+		matriz[40][1] =	1670;
+		matriz[41][1] =	460;
+		matriz[42][1] =	2556;
+		matriz[43][1] =	631;
+		matriz[44][1] =	497;
+		matriz[45][1] =	538;
+		matriz[46][1] =	1528;
+		matriz[47][1] =	915;
+		matriz[48][1] =	1281;
+		matriz[49][1] =	835;
+
+		//(3,2) -- (48,2)
+		matriz[3][2] = 494;
+		matriz[4][2] = 721;
+		matriz[5][2] = 3020;
+		matriz[6][2] = 1578;
+		matriz[7][2] = 1899;
+		matriz[8][2] = 1207;
+		matriz[9][2] = 2417;
+		matriz[10][2] = 424;
+		matriz[11][2] = 1396;
+		matriz[12][2] = 2642;
+		matriz[13][2] = 2070;
+		matriz[14][2] = 4116;
+		matriz[15][2] = 1697;
+		matriz[16][2] = 1520;
+		matriz[17][2] = 3114;
+		matriz[18][2] = 5467;
+		matriz[19][2] = 1542;
+		matriz[20][2] = 1997;
+		matriz[21][2] = 1842;
+		matriz[22][2] = 2197;
+		matriz[23][2] = 177;
+		matriz[24][2] = 3816;
+		matriz[25][2] = 1155;
+		matriz[26][2] = 1457;
+		matriz[27][2] = 1869;
+		matriz[28][2] = 3391;
+		matriz[29][2] = 2093;
+		matriz[30][2] = 996;
+		matriz[31][2] = 1219;
+		matriz[32][2] = 2301;
+		matriz[33][2] = 1032;
+		matriz[34][2] = 1366;
+		matriz[35][2] = 1858;
+		matriz[36][2] = 862;
+		matriz[37][2] = 1958;
+		matriz[38][2] = 1570;
+		matriz[39][2] = 1343;
+		matriz[40][2] = 885;
+		matriz[41][2] = 1911;
+		matriz[42][2] = 4003;
+		matriz[43][2] = 1065;
+		matriz[44][2] =	1221;
+		matriz[45][2] = 2167;
+		matriz[46][2] = 652;
+		matriz[47][2] = 879;
+		matriz[48][2] = 387;
+
+		//(4,3) -- (47,3)
+		matriz[4][3] = 1215;
+		matriz[5][3] = 3512;
+		matriz[6][3] = 2072;
+		matriz[7][3] = 2393;
+		matriz[8][3] = 1701;
+		matriz[9][3] = 2911;
+		matriz[10][3] = 388;
+		matriz[11][3] = 1890;
+		matriz[12][3] = 3136;
+		matriz[13][3] = 2564;
+		matriz[14][3] = 4610;
+		matriz[15][3] = 2191;
+		matriz[16][3] = 2014;
+		matriz[17][3] = 3608;
+		matriz[18][3] = 5961;
+		matriz[19][3] = 2036;
+		matriz[20][3] = 2491;
+		matriz[21][3] =	2336;
+		matriz[22][3] =	2891;
+		matriz[23][3] =	317;
+		matriz[24][3] =	4310;
+		matriz[25][3] =	1649;
+		matriz[26][3] =	1951;
+		matriz[27][3] =	2363;
+		matriz[28][3] =	3885;
+		matriz[29][3] =	2587;
+		matriz[30][3] =	1490;
+		matriz[31][3] =	1713;
+		matriz[32][3] =	2795;
+		matriz[33][3] =	1526;
+		matriz[34][3] =	1860;
+		matriz[35][3] =	2352;
+		matriz[36][3] =	1356;
+		matriz[37][3] =	2452;
+		matriz[38][3] =	2064;
+		matriz[39][3] =	1837;
+		matriz[40][3] =	1376;
+		matriz[41][3] =	2405;
+		matriz[42][3] =	4497;
+		matriz[43][3] =	1559;
+		matriz[44][3] =	1715;
+		matriz[45][3] =	2661;
+		matriz[46][3] =	1146;
+		matriz[47][3] = 1373;
+
+		//(5,4) -- (46,4)
+		matriz[5][4] = 3132;
+		matriz[6][4] = 1666;
+		matriz[7][4] = 2013;
+		matriz[8][4] = 1293;
+		matriz[9][4] = 2531;
+		matriz[10][4] =	853;
+		matriz[11][4] =	1310;
+		matriz[12][4] =	2753;
+		matriz[13][4] =	2187;
+		matriz[14][4] =	4230;
+		matriz[15][4] =	1811;
+		matriz[16][4] =	1634;
+		matriz[17][4] =	3228;
+		matriz[18][4] =	5581;
+		matriz[19][4] =	1656;
+		matriz[20][4] =	1890;
+		matriz[21][4] =	1930;
+		matriz[22][4] =	2311;
+		matriz[23][4] =	898;
+		matriz[24][4] =	3930;
+		matriz[25][4] =	1269;
+		matriz[26][4] =	1571;
+		matriz[27][4] =	1957;
+		matriz[28][4] =	3505;
+		matriz[29][4] =	2181;
+		matriz[30][4] =	771;
+		matriz[31][4] =	1305;
+		matriz[32][4] =	2389;
+		matriz[33][4] =	1118;
+		matriz[34][4] =	1480;
+		matriz[35][4] =	1946;
+		matriz[36][4] =	534;
+		matriz[37][4] =	2046;
+		matriz[38][4] =	1658;
+		matriz[39][4] =	1431;
+		matriz[40][4] =	164;
+		matriz[41][4] =	2025;
+		matriz[42][4] =	4117;
+		matriz[43][4] =	1151;
+		matriz[44][4] =	1307;
+		matriz[45][4] =	2281;
+		matriz[46][4] =	254;
+
+		//(6,5) -- (45,5)
+		matriz[6][5] = 1493;
+		matriz[7][5] = 1780;
+		matriz[8][5] = 1952;
+		matriz[9][5] = 1466;
+		matriz[10][5] =	3208;
+		matriz[11][5] =	2141;
+		matriz[12][5] =	376;
+		matriz[13][5] =	1038;
+		matriz[14][5] =	1425;
+		matriz[15][5] =	1578;
+		matriz[16][5] =	1570;
+		matriz[17][5] =	769;
+		matriz[18][5] =	2776;
+		matriz[19][5] =	1516;
+		matriz[20][5] =	1878;
+		matriz[21][5] =	1530;
+		matriz[22][5] =	1347;
+		matriz[23][5] =	3195;
+		matriz[24][5] =	1125;
+		matriz[25][5] =	1863;
+		matriz[26][5] =	1705;
+		matriz[27][5] =	1202;
+		matriz[28][5] =	620;
+		matriz[29][5] =	1426;
+		matriz[30][5] =	2333;
+		matriz[31][5] =	1894;
+		matriz[32][5] =	1422;
+		matriz[33][5] =	1986;
+		matriz[34][5] =	1691;
+		matriz[35][5] =	1428;
+		matriz[36][5] =	2604;
+		matriz[37][5] =	1113;
+		matriz[38][5] =	1448;
+		matriz[39][5] =	1728;
+		matriz[40][5] =	3020;
+		matriz[41][5] =	1633;
+		matriz[42][5] =	1312;
+		matriz[43][5] =	1981;
+		matriz[44][5] =	1808;
+		matriz[45][5] =	851;
+
+		//(7,6) -- (44,6)
+		matriz[7][6] = 886;
+		matriz[8][6] = 810;
+		matriz[9][6] = 1373;
+		matriz[10][6] =	1768;
+		matriz[11][6] =	999;
+		matriz[12][6] =	1117;
+		matriz[13][6] =	844;
+		matriz[14][6] =	2813;
+		matriz[15][6] =	684;
+		matriz[16][6] =	559;
+		matriz[17][6] =	1811;
+		matriz[18][6] =	4164;
+		matriz[19][6] =	541;
+		matriz[20][6] =	984;
+		matriz[21][6] =	317;
+		matriz[22][6] =	1153;
+		matriz[23][6] =	1755;
+		matriz[24][6] =	2513;
+		matriz[25][6] =	721;
+		matriz[26][6] =	739;
+		matriz[27][6] =	291;
+		matriz[28][6] =	2088;
+		matriz[29][6] =	515;
+		matriz[30][6] =	1094;
+		matriz[31][6] =	626;
+		matriz[32][6] =	729;
+		matriz[33][6] =	813;
+		matriz[34][6] =	552;
+		matriz[35][6] =	325;
+		matriz[36][6] =	1178;
+		matriz[37][6] =	380;
+		matriz[38][6] =	344;
+		matriz[39][6] =	235;
+		matriz[40][6] =	1512;
+		matriz[41][6] =	898;
+		matriz[42][6] =	2700;
+		matriz[43][6] =	780;
+		matriz[44][6] =	704;
+
+		//(8,7) -- (43,7)
+		matriz[8][7] = 833;
+		matriz[9][7] = 922;
+		matriz[10][7] =	2045;
+		matriz[11][7] =	804;
+		matriz[12][7] =	1404;
+		matriz[13][7] =	832;
+		matriz[14][7] =	2621;
+		matriz[15][7] =	202;
+		matriz[16][7] =	479;
+		matriz[17][7] =	1619;
+		matriz[18][7] =	3972;
+		matriz[19][7] =	425;
+		matriz[20][7] =	98;
+		matriz[21][7] =	1319;
+		matriz[22][7] =	702;
+		matriz[23][7] =	2076;
+		matriz[24][7] =	2321;
+		matriz[25][7] =	744;
+		matriz[26][7] =	504;
+		matriz[27][7] =	991;
+		matriz[28][7] =	1896;
+		matriz[29][7] =	1215;
+		matriz[30][7] =	1214;
+		matriz[31][7] =	817;
+		matriz[32][7] =	1339;
+		matriz[33][7] =	867;
+		matriz[34][7] =	579;
+		matriz[35][7] =	1217;
+		matriz[36][7] =	1346;
+		matriz[37][7] =	902;
+		matriz[38][7] =	542;
+		matriz[39][7] =	943;
+		matriz[40][7] =	1796;
+		matriz[41][7] =	416;
+		matriz[42][7] =	2508;
+		matriz[43][7] =	862;
+
+		//(9,8) -- (42,8)
+		matriz[9][8] = 1351;
+		matriz[10][8] =	1397;
+		matriz[11][8] =	189;
+		matriz[12][8] =	1576;
+		matriz[13][8] =	1004;
+		matriz[14][8] =	3050;
+		matriz[15][8] =	631;
+		matriz[16][8] =	454;
+		matriz[17][8] =	2048;
+		matriz[18][8] =	4401;
+		matriz[19][8] =	476;
+		matriz[20][8] =	931;
+		matriz[21][8] =	1064;
+		matriz[22][8] =	1131;
+		matriz[23][8] =	1384;
+		matriz[24][8] =	2750;
+		matriz[25][8] =	89;
+		matriz[26][8] =	391;
+		matriz[27][8] =	1022;
+		matriz[28][8] =	2325;
+		matriz[29][8] =	1246;
+		matriz[30][8] =	522;
+		matriz[31][8] =	184;
+		matriz[32][8] =	1375;
+		matriz[33][8] =	175;
+		matriz[34][8] =	300;
+		matriz[35][8] =	1091;
+		matriz[36][8] =	793;
+		matriz[37][8] =	938;
+		matriz[38][8] =	504;
+		matriz[39][8] =	575;
+		matriz[40][8] =	1246;
+		matriz[41][8] =	845;
+		matriz[42][8] =	2937;
+
+		//(10,9) -- (41,9)
+		matriz[10][9] =	2607;
+		matriz[11][9] =	1540;
+		matriz[12][9] =	1191;
+		matriz[13][9] =	529;
+		matriz[14][9] =	1699;
+		matriz[15][9] =	720;
+		matriz[16][9] =	997;
+		matriz[17][9] =	697;
+		matriz[18][9] =	3050;
+		matriz[19][9] =	943;
+		matriz[20][9] =	952;
+		matriz[21][9] =	1463;
+		matriz[22][9] =	220;
+		matriz[23][9] =	2594;
+		matriz[24][9] =	1399;
+		matriz[25][9] =	1262;
+		matriz[26][9] =	1022;
+		matriz[27][9] =	1148;
+		matriz[28][9] =	974;
+		matriz[29][9] =	1372;
+		matriz[30][9] =	1732;
+		matriz[31][9] =	1335;
+		matriz[32][9] =	1355;
+		matriz[33][9] =	1385;
+		matriz[34][9] =	1097;
+		matriz[35][9] =	1361;
+		matriz[36][9] =	2003;
+		matriz[37][9] =	1046;
+		matriz[38][9] =	1029;
+		matriz[39][9] =	1430;
+		matriz[40][9] =	2419;
+		matriz[41][9] =	506;
+
+		//(11,10) -- (40,10)
+		matriz[11][10] = 1586;
+		matriz[12][10] = 2832;
+		matriz[13][10] = 2260;
+		matriz[14][10] = 4306;
+		matriz[15][10] = 1887;
+		matriz[16][10] = 1710;
+		matriz[17][10] = 3304;
+		matriz[18][10] = 5657;
+		matriz[19][10] = 1732;
+		matriz[20][10] = 2187;
+		matriz[21][10] = 2032;
+		matriz[22][10] = 2387;
+		matriz[23][10] = 388;
+		matriz[24][10] = 4006;
+		matriz[25][10] = 1345;
+		matriz[26][10] = 1647;
+		matriz[27][10] = 2059;
+		matriz[28][10] = 3581;
+		matriz[29][10] = 2283;
+		matriz[30][10] = 1186;
+		matriz[31][10] = 1440;
+		matriz[32][10] = 2491;
+		matriz[33][10] = 1222;
+		matriz[34][10] = 1556;
+		matriz[35][10] = 2048;
+		matriz[36][10] = 1052;
+		matriz[37][10] = 2148;
+		matriz[38][10] = 1760;
+		matriz[39][10] = 1533;
+		matriz[40][10] = 1000;
+
+		//(12,11) -- (39,11)
+		matriz[12][11] = 1765;
+		matriz[13][11] = 1193;
+		matriz[14][11] = 3239;
+		matriz[15][11] = 820;
+		matriz[16][11] = 643;
+		matriz[17][11] = 2237;
+		matriz[18][11] = 4590;
+		matriz[19][11] = 665;
+		matriz[20][11] = 814;
+		matriz[21][11] = 1253;
+		matriz[22][11] = 1320;
+		matriz[23][11] = 1573;
+		matriz[24][11] = 2939;
+		matriz[25][11] = 278;
+		matriz[26][11] = 580;
+		matriz[27][11] = 1211;
+		matriz[28][11] = 2514;
+		matriz[29][11] = 1435;
+		matriz[30][11] = 711;
+		matriz[31][11] = 373;
+		matriz[32][11] = 1564;
+		matriz[33][11] = 364;
+		matriz[34][11] = 489;
+		matriz[35][11] = 1280;
+		matriz[36][11] = 776;
+		matriz[37][11] = 1127;
+		matriz[38][11] = 693;
+		matriz[39][11] = 764;
+
+		//(13,12) -- (38,12)
+		matriz[13][12] = 662;
+		matriz[14][12] = 1696;
+		matriz[15][12] = 1202;
+		matriz[16][12] = 1194;
+		matriz[17][12] = 694;
+		matriz[18][12] = 3047;
+		matriz[19][12] = 1140;
+		matriz[20][12] = 1502;
+		matriz[21][12] = 1154;
+		matriz[22][12] = 971;
+		matriz[23][12] = 2819;
+		matriz[24][12] = 1396;
+		matriz[25][12] = 1487;
+		matriz[26][12] = 1329;
+		matriz[27][12] = 826;
+		matriz[28][12] = 971;
+		matriz[29][12] = 1050;
+		matriz[30][12] = 1957;
+		matriz[31][12] = 1553;
+		matriz[32][12] = 1046;
+		matriz[33][12] = 1610;
+		matriz[34][12] = 1315;
+		matriz[35][12] = 1052;
+		matriz[36][12] = 2228;
+		matriz[37][12] = 737;
+		matriz[38][12] = 1072;
+
+		//(14,13) -- (37,13)
+		matriz[14][13] = 2228;
+		matriz[15][13] = 630;
+		matriz[16][13] = 622;
+		matriz[17][13] = 1226;
+		matriz[18][13] = 3579;
+		matriz[19][13] = 568;
+		matriz[20][13] = 930;
+		matriz[21][13] = 934;
+		matriz[22][13] = 309;
+		matriz[23][13] = 2247;
+		matriz[24][13] = 1928;
+		matriz[25][13] = 915;
+		matriz[26][13] = 757;
+		matriz[27][13] = 606;
+		matriz[28][13] = 1503;
+		matriz[29][13] = 830;
+		matriz[30][13] = 1385;
+		matriz[31][13] = 981;
+		matriz[32][13] = 826;
+		matriz[33][13] = 1038;
+		matriz[34][13] = 743;
+		matriz[35][13] = 832;
+		matriz[36][13] = 1656;
+		matriz[37][13] = 517;
+
+		//(15,14) -- (36,14)
+		matriz[15][14] = 2419;
+		matriz[16][14] = 2696;
+		matriz[17][14] = 1002;
+		matriz[18][14] = 1351;
+		matriz[19][14] = 2642;
+		matriz[20][14] = 2651;
+		matriz[21][14] = 2850;
+		matriz[22][14] = 1919;
+		matriz[23][14] = 4293;
+		matriz[24][14] = 300;
+		matriz[25][14] = 2961;
+		matriz[26][14] = 2721;
+		matriz[27][14] = 2522;
+		matriz[28][14] = 933;
+		matriz[29][14] = 2746;
+		matriz[30][14] = 3431;
+		matriz[31][14] = 3034;
+		matriz[32][14] = 2745;
+		matriz[33][14] = 3084;
+		matriz[34][14] = 2796;
+		matriz[35][14] = 2748;
+		matriz[36][14] = 3702;
+
+		//(16,15) -- (35,15)
+		matriz[16][15] = 277;
+		matriz[17][15] = 1417;
+		matriz[18][15] = 3770;
+		matriz[19][15] = 223;
+		matriz[20][15] = 300;
+		matriz[21][15] = 1117;
+		matriz[22][15] = 500;
+		matriz[23][15] = 1874;
+		matriz[24][15] = 2119;
+		matriz[25][15] = 542;
+		matriz[26][15] = 302;
+		matriz[27][15] = 789;
+		matriz[28][15] = 1694;
+		matriz[29][15] = 1013;
+		matriz[30][15] = 1012;
+		matriz[31][15] = 615;
+		matriz[32][15] = 1137;
+		matriz[33][15] = 665;
+		matriz[34][15] = 377;
+		matriz[35][15] = 1015;
+
+		//(17,16) -- (34,16)
+		matriz[17][16] = 1694;
+		matriz[18][16] = 4047;
+		matriz[19][16] = 54;
+		matriz[20][16] = 577;
+		matriz[21][16] = 774;
+		matriz[22][16] = 777;
+		matriz[23][16] = 1697;
+		matriz[24][16] = 2396;
+		matriz[25][16] = 365;
+		matriz[26][16] = 180;
+		matriz[27][16] = 729;
+		matriz[28][16] = 1971;
+		matriz[29][16] = 977;
+		matriz[30][16] = 835;
+		matriz[31][16] = 392;
+		matriz[32][16] = 1101;
+		matriz[33][16] = 488;
+		matriz[34][16] = 154;
+
+		//(18,17) -- (33,17)
+		matriz[18][17] = 2353;
+		matriz[19][17] = 1640;
+		matriz[20][17] = 1649;
+		matriz[21][17] = 1848;
+		matriz[22][17] = 917;
+		matriz[23][17] = 3291;
+		matriz[24][17] = 702;
+		matriz[25][17] = 1959;
+		matriz[26][17] = 1719;
+		matriz[27][17] = 1520;
+		matriz[28][17] = 277;
+		matriz[29][17] = 1744;
+		matriz[30][17] = 2429;
+		matriz[31][17] = 2032;
+		matriz[32][17] = 1743;
+		matriz[33][17] = 2082;
+
+		//(19,18) -- (32,18)
+		matriz[19][18] = 3993;
+		matriz[20][18] = 4002;
+		matriz[21][18] = 4201;
+		matriz[22][18] = 3270;
+		matriz[23][18] = 5644;
+		matriz[24][18] = 1651;
+		matriz[25][18] = 4312;
+		matriz[26][18] = 4072;
+		matriz[27][18] = 3873;
+		matriz[28][18] = 2281;
+		matriz[29][18] = 4097;
+		matriz[30][18] = 4782;
+		matriz[31][18] = 4385;
+		matriz[32][18] = 4096;
+
+		//(20,19) -- (31,19)
+		matriz[20][19] = 523;
+		matriz[21][19] = 756;
+		matriz[22][19] = 723;
+		matriz[23][19] = 1719;
+		matriz[24][19] = 2342;
+		matriz[25][19] = 387;
+		matriz[26][19] = 202;
+		matriz[27][19] = 711;
+		matriz[28][19] = 1917;
+		matriz[29][19] = 935;
+		matriz[30][19] = 857;
+		matriz[31][19] = 414;
+
+		//(21,20) -- (30,20)
+		matriz[21][20] = 1417;
+		matriz[22][20] = 732;
+		matriz[23][20] = 2174;
+		matriz[24][20] = 2351;
+		matriz[25][20] = 842; 
+		matriz[26][20] = 602;
+		matriz[27][20] = 1089;
+		matriz[28][20] = 1926;
+		matriz[29][20] = 1313;
+		matriz[30][20] = 1312;
+
+		//(22,21) -- (29,21)
+		matriz[22][21] = 1250;
+		matriz[23][21] = 2019;
+		matriz[24][21] = 2550;
+		matriz[25][21] = 975;
+		matriz[26][21] = 954;
+		matriz[27][21] = 328;
+		matriz[28][21] = 2125;
+		matriz[29][21] = 358;
+
+		//(23,22) -- (28,22)
+		matriz[23][22] = 2374;
+		matriz[24][22] = 1619;
+		matriz[25][22] = 1042;
+		matriz[26][22] = 802;
+		matriz[27][22] = 928;
+		matriz[28][22] = 1194;
+
+		//(24,23) -- (27,23)
+		matriz[24][23] = 3993;
+		matriz[25][23] = 1332;
+		matriz[26][23] = 1631;
+		matriz[27][23] = 2046;
+
+		//(25,24) -- (26,24)
+		matriz[25][24] = 2661;
+		matriz[26][24] = 2421;
+
+		//(50,1)....(50,49)
+			matriz[50][1] = 684;
+			matriz[50][2] = 835;
+			matriz[50][3] = 981;
+			matriz[50][4] = 1475;
+			matriz[50][5] = 1069;
+			matriz[50][6] = 2185;
+			matriz[50][7] = 651;
+			matriz[50][8] = 1066;
+			matriz[50][9] = 378;
+			matriz[50][10] = 1584;
+
+			matriz[50][11] = 1171;
+			matriz[50][12] = 567;
+			matriz[50][13] = 1809;
+			matriz[50][14] = 1237;
+			matriz[50][15] = 3283;
+			matriz[50][16] = 864;
+			matriz[50][17] = 687;
+			matriz[50][18] = 2281;
+			matriz[50][19] = 4634;
+			matriz[50][20] = 709;
+
+			matriz[50][21] = 1164;
+			matriz[50][22] = 915;
+			matriz[50][23] = 1364;
+			matriz[50][24] = 1158;
+			matriz[50][25] = 2983;
+			matriz[50][26] = 322;
+			matriz[50][27] = 624;
+			matriz[50][28] = 942;
+			matriz[50][29] = 2558;
+			matriz[50][30] = 1166;
+
+			matriz[50][31] = 380;
+			matriz[50][32] = 358;
+			matriz[50][33] = 1374;
+			matriz[50][34] = 203;
+			matriz[50][35] = 533;
+			matriz[50][36] = 931;
+			matriz[50][37] = 581;
+			matriz[50][38] = 1031;
+			matriz[50][39] = 737;
+			matriz[50][40] = 416;
+
+			matriz[50][41] = 915;
+			matriz[50][42] = 1078;
+			matriz[50][43] = 3170;
+			matriz[50][44] = 204;
+			matriz[50][45] = 388;
+			matriz[50][46] = 1334;
+			matriz[50][47] = 773;
+			matriz[50][48] = 102;
+			matriz[50][49] = 594;
+
+			//(49,2)....(49,48)
+			matriz[49][2] = 1281;
+			matriz[49][3] = 387;
+			matriz[49][4] = 881;
+			matriz[49][5] = 475;
+			matriz[49][6] = 2631;
+			matriz[49][7] = 1191;
+			matriz[49][8] = 1512;
+			matriz[49][9] = 820;
+			matriz[49][10] = 2030;
+
+			matriz[49][11] = 577;
+			matriz[49][12] = 1009;
+			matriz[49][13] = 2255;
+			matriz[49][14] = 1683;
+			matriz[49][15] = 3729;
+			matriz[49][16] = 1310;
+			matriz[49][17] = 1133;
+			matriz[49][18] = 2727;
+			matriz[49][19] = 5080;
+			matriz[49][20] = 1155;
+
+			matriz[49][21] = 1160;
+			matriz[49][22] = 1455;
+			matriz[49][23] = 1810;
+			matriz[49][24] = 564;
+			matriz[49][25] = 3429;
+			matriz[49][26] = 768;
+			matriz[49][27] = 1070;
+			matriz[49][28] = 1482;
+			matriz[49][29] = 3004;
+			matriz[49][30] = 1706;
+
+			matriz[49][31] = 609;
+			matriz[49][32] = 832;
+			matriz[49][33] = 1914;
+			matriz[49][34] = 645;
+			matriz[49][35] = 979;
+			matriz[49][36] = 1471;
+			matriz[49][37] = 475;
+			matriz[49][38] = 1571;
+			matriz[49][39] = 1183;
+			matriz[49][40] = 956;
+
+			matriz[49][41] = 636;
+			matriz[49][42] = 1524;
+			matriz[49][43] = 3616;
+			matriz[49][44] = 678;
+			matriz[49][45] = 834;
+			matriz[49][46] = 1780;
+			matriz[49][47] = 284;
+			matriz[49][48] = 594;
+
+			//(48,3)....(48,47)
+		
+			matriz[48][3] = 879;
+			matriz[48][4] = 1373;
+			matriz[48][5] = 967;
+			matriz[48][6] = 2265;
+			matriz[48][7] = 699;
+			matriz[48][8] = 1123;
+			matriz[48][9] = 454;
+			matriz[48][10] = 1664;
+
+			matriz[48][11] = 1069;
+			matriz[48][12] = 643;
+			matriz[48][13] = 1889;
+			matriz[48][14] = 1317;
+			matriz[48][15] = 3363;
+			matriz[48][16] = 944;
+			matriz[48][17] = 767;
+			matriz[48][18] = 2361;
+			matriz[48][19] = 4714;
+			matriz[48][20] = 789;
+
+			matriz[48][21] = 1244;
+			matriz[48][22] = 963;
+			matriz[48][23] = 1444;
+			matriz[48][24] = 1056;
+			matriz[48][25] = 3063;
+			matriz[48][26] = 402;
+			matriz[48][27] = 704;
+			matriz[48][28] = 990;
+			matriz[48][29] = 2638;
+			matriz[48][30] = 1214;
+
+			matriz[48][31] = 395;
+			matriz[48][32] = 466;
+			matriz[48][33] = 1422;
+			matriz[48][34] = 279;
+			matriz[48][35] = 613;
+			matriz[48][36] = 979;
+			matriz[48][37] = 479;
+			matriz[48][38] = 1079;
+			matriz[48][39] = 817;
+			matriz[48][40] = 464;
+
+			matriz[48][41] = 813;
+			matriz[48][42] = 1158;
+			matriz[48][43] = 3250;
+			matriz[48][44] = 306;
+			matriz[48][45] = 468;
+			matriz[48][46] = 1414;
+			matriz[48][47] = 671;
+
+			//(47,4)....(47,46)
+
+			matriz[47][4] = 1146;
+			matriz[47][5] = 254;
+			matriz[47][6] = 2878;
+			matriz[47][7] = 1370;
+			matriz[47][8] = 1654;
+			matriz[47][9] = 1067;
+			matriz[47][10] = 2277;
+
+			matriz[47][11] = 770;
+			matriz[47][12] = 1084;
+			matriz[47][13] = 2502;
+			matriz[47][14] = 1930;
+			matriz[47][15] = 3930;
+			matriz[47][16] = 1557;
+			matriz[47][17] = 1380;
+			matriz[47][18] = 2974;
+			matriz[47][19] = 5327;
+			matriz[47][20] = 1492;
+
+			matriz[47][21] = 1664;
+			matriz[47][22] = 1634;
+			matriz[47][23] = 2054;
+			matriz[47][24] = 829;
+			matriz[47][25] = 3675;
+			matriz[47][26] = 1015;
+			matriz[47][27] = 1317;
+			matriz[47][28] = 1661;
+			matriz[47][29] = 3251;
+			matriz[47][30] = 1885;
+
+			matriz[47][31] = 545;
+			matriz[47][32] = 1079;
+			matriz[47][33] = 2187;
+			matriz[47][34] = 892;
+			matriz[47][35] = 1226;
+			matriz[47][36] = 1650;
+			matriz[47][37] = 308;
+			matriz[47][38] = 1750;
+			matriz[47][39] = 1430;
+			matriz[47][40] = 1135;
+
+			matriz[47][41] = 412;
+			matriz[47][42] = 1771;
+			matriz[47][43] = 3863;
+			matriz[47][44] = 929;
+			matriz[47][45] = 1081;
+			matriz[47][46] = 2027;
+
+			//(46,5)....(46,45)
+
+			matriz[46][5] = 2281;
+			matriz[46][6] = 851;
+			matriz[46][7] = 642;
+			matriz[46][8] = 929;
+			matriz[46][9] = 1101;
+			matriz[46][10] = 784;
+
+			matriz[46][11] = 2357;
+			matriz[46][12] = 1290;
+			matriz[46][13] = 475;
+			matriz[46][14] = 255;
+			matriz[46][15] = 2171;
+			matriz[46][16] = 727;
+			matriz[46][17] = 719;
+			matriz[46][18] = 1169;
+			matriz[46][19] = 3522;
+			matriz[46][20] = 665;
+
+			matriz[46][21] = 1027;
+			matriz[46][22] = 679;
+			matriz[46][23] = 564;
+			matriz[46][24] = 2344;
+			matriz[46][25] = 1871;
+			matriz[46][26] = 1012;
+			matriz[46][27] = 854;
+			matriz[46][28] = 351;
+			matriz[46][29] = 1446;
+			matriz[46][30] = 575;
+
+			matriz[46][31] = 1482;
+			matriz[46][32] = 1043;
+			matriz[46][33] = 571;
+			matriz[46][34] = 1135;
+			matriz[46][35] = 805;
+			matriz[46][36] = 577;
+			matriz[46][37] = 1753;
+			matriz[46][38] = 262;
+			matriz[46][39] = 597;
+			matriz[46][40] = 877;
+
+			matriz[46][41] = 2169;
+			matriz[46][42] = 850;
+			matriz[46][43] = 2058;
+			matriz[46][44] = 1130;
+			matriz[46][45] = 957;
+
+			//(45,6)....(45,44)
+
+			matriz[45][6] = 1808;
+			matriz[45][7] = 704;
+			matriz[45][8] = 678;
+			matriz[45][9] = 155;
+			matriz[45][10] = 1196;
+
+			matriz[45][11] = 1411;
+			matriz[45][12] = 344;
+			matriz[45][13] = 1432;
+			matriz[45][14] = 938;
+			matriz[45][15] = 2895;
+			matriz[45][16] = 476;
+			matriz[45][17] = 349;
+			matriz[45][18] = 1893;
+			matriz[45][19] = 4246;
+			matriz[45][20] = 371;
+
+			matriz[45][21] = 776;
+			matriz[45][22] = 1041;
+			matriz[45][23] = 979;
+			matriz[45][24] = 1398;
+			matriz[45][25] = 2595;
+			matriz[45][26] = 66;
+			matriz[45][27] = 236;
+			matriz[45][28] = 898;
+			matriz[45][29] = 2170;
+			matriz[45][30] = 1122;
+
+			matriz[45][31] = 536;
+			matriz[45][32] = 161;
+			matriz[45][33] = 1289;
+			matriz[45][34] = 189;
+			matriz[45][35] = 195;
+			matriz[45][36] = 1029;
+			matriz[45][37] = 809;
+			matriz[45][38] = 852;
+			matriz[45][39] = 360;
+			matriz[45][40] = 552;
+
+			matriz[45][41] = 1223;
+			matriz[45][42] = 690;
+			matriz[45][43] = 2782;
+			matriz[45][44] = 184;
+
+			//(44,7)....(44,43)
+
+			matriz[44][7] = 780;
+			matriz[44][8] = 862;
+			matriz[44][9] = 208;
+			matriz[44][10] = 1380;
+
+			matriz[44][11] = 1255;
+			matriz[44][12] = 396;
+			matriz[44][13] = 1605;
+			matriz[44][14] = 1033;
+			matriz[44][15] = 3079;
+			matriz[44][16] = 660;
+			matriz[44][17] = 483;
+			matriz[44][18] = 2077;
+			matriz[44][19] = 4430;
+			matriz[44][20] = 505;
+
+			matriz[44][21] = 960;
+			matriz[44][22] = 1044;
+			matriz[44][23] = 1160;
+			matriz[44][24] = 1242;
+			matriz[44][25] = 2779;
+			matriz[44][26] = 118;
+			matriz[44][27] = 420;
+			matriz[44][28] = 1051;
+			matriz[44][29] = 2354;
+			matriz[44][30] = 1275;
+
+			matriz[44][31] = 380;
+			matriz[44][32] = 154;
+			matriz[44][33] = 1376;
+			matriz[44][34] = 33;
+			matriz[44][35] = 329;
+			matriz[44][36] = 1060;
+			matriz[44][37] = 651;
+			matriz[44][38] = 967;
+			matriz[44][39] = 533;
+			matriz[44][40] = 545;
+
+			matriz[44][41] = 1067;
+			matriz[44][42] = 874;
+			matriz[44][43] = 2966;
+
+			//(43,8)....(43,42)
+
+			
+			matriz[43][8] = 2508;
+			matriz[43][9] = 2937;
+			matriz[43][10] = 1586;
+
+			matriz[43][11] = 4193;
+			matriz[43][12] = 3126;
+			matriz[43][13] = 1583;
+			matriz[43][14] = 2115;
+			matriz[43][15] = 113;
+			matriz[43][16] = 2306;
+			matriz[43][17] = 2583;
+			matriz[43][18] = 889;
+			matriz[43][19] = 1464;
+			matriz[43][20] = 2529;
+
+			matriz[43][21] = 2538;
+			matriz[43][22] = 2737;
+			matriz[43][23] = 1806;
+			matriz[43][24] = 4180;
+			matriz[43][25] = 187;
+			matriz[43][26] = 2848;
+			matriz[43][27] = 2608;
+			matriz[43][28] = 2409;
+			matriz[43][29] = 820;
+			matriz[43][30] = 2633;
+
+			matriz[43][31] = 3318;
+			matriz[43][32] = 2875;
+			matriz[43][33] = 2629;
+			matriz[43][34] = 2971;
+			matriz[43][35] = 2637;
+			matriz[43][36] = 2635;
+			matriz[43][37] = 3589;
+			matriz[43][38] = 2320;
+			matriz[43][39] = 2615;
+			matriz[43][40] = 2935;
+
+			matriz[43][41] = 4005;
+			matriz[43][42] = 2092;
+
+			//(42,9)....(42,41)
+
+			matriz[42][9] = 1246;
+			matriz[42][10] = 2419;
+
+			matriz[42][11] = 2101;
+			matriz[42][12] = 1034;
+			matriz[42][13] = 1257;
+			matriz[42][14] = 595;
+			matriz[42][15] = 2205;
+			matriz[42][16] = 214;
+			matriz[42][17] = 491;
+			matriz[42][18] = 1203;
+			matriz[42][19] = 3556;
+			matriz[42][20] = 437;
+
+			matriz[42][21] = 446;
+			matriz[42][22] = 1331;
+			matriz[42][23] = 286;
+			matriz[42][24] = 2088;
+			matriz[42][25] = 1905;
+			matriz[42][26] = 756;
+			matriz[42][27] = 516;
+			matriz[42][28] = 1003;
+			matriz[42][29] = 1480;
+			matriz[42][30] = 1227;
+
+			matriz[42][31] = 1226;
+			matriz[42][32] = 829;
+			matriz[42][33] = 1351;
+			matriz[42][34] = 879;
+			matriz[42][35] = 591;
+			matriz[42][36] = 1229;
+			matriz[42][37] = 1497;
+			matriz[42][38] = 914;
+			matriz[42][39] = 554;
+			matriz[42][40] = 955;
+
+			matriz[42][41] = 1913;
+
+			//(40,11)....(40,39)
+
+			matriz[40][11] = 1533;
+			matriz[40][12] = 764;
+			matriz[40][13] = 1352;
+			matriz[40][14] = 901;
+			matriz[40][15] = 3048;
+			matriz[40][16] = 741;
+			matriz[40][17] = 616;
+			matriz[40][18] = 2046;
+			matriz[40][19] = 4399;
+			matriz[40][20] = 598;
+
+			matriz[40][21] = 1041;
+			matriz[40][22] = 499;
+			matriz[40][23] = 1210;
+			matriz[40][24] = 1520;
+			matriz[40][25] = 2748;
+			matriz[40][26] = 486;
+			matriz[40][27] = 796;
+			matriz[40][28] = 526;
+			matriz[40][29] = 2323;
+			matriz[40][30] = 750;
+
+			matriz[40][31] = 859;
+			matriz[40][32] = 391;
+			matriz[40][33] = 958;
+			matriz[40][34] = 578;
+			matriz[40][35] = 609;
+			matriz[40][36] = 515;
+			matriz[40][37] = 943;
+			matriz[40][38] = 615;
+			matriz[40][39] = 401;
+
+			//(39,12)....(39,38)
+
+			matriz[39][12] = 693;
+			matriz[39][13] = 1072;
+			matriz[39][14] = 500;
+			matriz[39][15] = 2768;
+			matriz[39][16] = 340;
+			matriz[39][17] = 215;
+			matriz[39][18] = 1766;
+			matriz[39][19] = 4119;
+			matriz[39][20] = 197;
+
+			matriz[39][21] = 640;
+			matriz[39][22] = 559;
+			matriz[39][23] = 809;
+			matriz[39][24] = 1747;
+			matriz[39][25] = 2468;
+			matriz[39][26] = 415;
+			matriz[39][27] = 395;
+			matriz[39][28] = 514;
+			matriz[39][29] = 2043;
+			matriz[39][30] = 738;
+
+			matriz[39][31] = 885;
+			matriz[39][32] = 446;
+			matriz[39][33] = 886;
+			matriz[39][34] = 538;
+			matriz[39][35] = 208;
+			matriz[39][36] = 669;
+			matriz[39][37] = 1156;
+			matriz[39][38] = 449;
+
+			//(38,13)....(38,37)
+
+			matriz[38][13] = 737;
+			matriz[38][14] = 517;
+			matriz[38][15] = 243;
+			matriz[38][16] = 700;
+			matriz[38][17] = 664;
+			matriz[38][18] = 1431;
+			matriz[38][19] = 3784;
+			matriz[38][20] = 646;
+
+			matriz[38][21] = 1000;
+			matriz[38][22] = 417;
+			matriz[38][23] = 826;
+			matriz[38][24] = 2181;
+			matriz[38][25] = 2133;
+			matriz[38][26] = 849;
+			matriz[38][27] = 844;
+			matriz[38][28] = 89;
+			matriz[38][29] = 1708;
+			matriz[38][30] = 313;
+
+			matriz[38][31] = 1314;
+			matriz[38][32] = 895;
+			matriz[38][33] = 437;
+			matriz[38][34] = 972;
+			matriz[38][35] = 657;
+			matriz[38][36] = 315;
+			matriz[38][37] = 1590;
+
+			//(37,14)....(37,36)
+
+			matriz[37][14] = 1656;
+			matriz[37][15] = 3702;
+			matriz[37][16] = 1283;
+			matriz[37][17] = 1160;
+			matriz[37][18] = 2700;
+			matriz[37][19] = 5053;
+			matriz[37][20] = 1128;
+
+			matriz[37][21] = 1356;
+			matriz[37][22] = 1442;
+			matriz[37][23] = 1783;
+			matriz[37][24] = 1039;
+			matriz[37][25] = 3402;
+			matriz[37][26] = 741;
+			matriz[37][27] = 1043;
+			matriz[37][28] = 1469;
+			matriz[37][29] = 2977;
+			matriz[37][30] = 1693;
+
+			matriz[37][31] = 271;
+			matriz[37][32] = 805;
+			matriz[37][33] = 2027;
+			matriz[37][34] = 618;
+			matriz[37][35] = 952;
+			matriz[37][36] = 1458;
+
+			//(36,15)....(36,35)
+
+			matriz[36][15] = 2748;
+			matriz[36][16] = 1015;
+			matriz[36][17] = 884;
+			matriz[36][18] = 1746;
+			matriz[36][19] = 4099;
+			matriz[36][20] = 712;
+
+			matriz[36][21] = 1309;
+			matriz[36][22] = 102;
+			matriz[36][23] = 1141;
+			matriz[36][24] = 2035;
+			matriz[36][25] = 2448;
+			matriz[36][26] = 1002;
+			matriz[36][27] = 1064;
+			matriz[36][28] = 226;
+			matriz[36][29] = 2023;
+			matriz[36][30] = 256;
+
+			matriz[36][31] = 1440;
+			matriz[36][32] = 907;
+			matriz[36][33] = 443;
+			matriz[36][34] = 1093;
+			matriz[36][35] = 877;
+
+			//(35,16)....(35,34)
+
+			matriz[35][16] = 377;
+			matriz[35][17] = 154;
+			matriz[35][18] = 1794;
+			matriz[35][19] = 4147;
+			matriz[35][20] = 176;
+
+			matriz[35][21] = 677;
+			matriz[35][22] = 767;
+			matriz[35][23] = 877;
+			matriz[35][24] = 1543;
+			matriz[35][25] = 2496;
+			matriz[35][26] = 211;
+			matriz[35][27] = 192;
+			matriz[35][28] = 722;
+			matriz[35][29] = 2071;
+			matriz[35][30] = 946;
+
+			matriz[35][31] = 681;
+			matriz[35][32] = 238;
+			matriz[35][33] = 1094;
+			matriz[35][34] = 334;
+
+			//(34,17)....(34,33)
+
+			matriz[34][17] = 488;
+			matriz[34][18] = 2082;
+			matriz[34][19] = 4435;
+			matriz[34][20] = 510;
+
+			matriz[34][21] = 965;
+			matriz[34][22] = 1077;
+			matriz[34][23] = 1165;
+			matriz[34][24] = 1209;
+			matriz[34][25] = 2784;
+			matriz[34][26] = 123;
+			matriz[34][27] = 425;
+			matriz[34][28] = 1056;
+			matriz[34][29] = 2359;
+			matriz[34][30] = 1280;
+
+			matriz[34][31] = 347;
+			matriz[34][32] = 187;
+			matriz[34][33] = 149;
+
+			//(33,18)....(33,32)
+
+			matriz[33][18] = 1743;
+			matriz[33][19] = 4096;
+			matriz[33][20] = 1083;
+
+			matriz[33][21] = 1437;
+			matriz[33][22] = 545;
+			matriz[33][23] = 1135;
+			matriz[33][24] = 2478;
+			matriz[33][25] = 2442;
+			matriz[33][26] = 1286;
+			matriz[33][27] = 1283;
+			matriz[33][28] = 438;
+			matriz[33][29] = 2017;
+			matriz[33][30] = 187;
+
+			matriz[33][31] = 1756;
+			matriz[33][32] = 1313;
+
+			//(32,19)....(32,31)
+
+			matriz[32][19] = 4385;
+			matriz[32][20] = 414;
+
+			matriz[32][21] = 915;
+			matriz[32][22] = 890;
+			matriz[32][23] = 1115;
+			matriz[32][24] = 1396;
+			matriz[32][25] = 2734;
+			matriz[32][26] = 95;
+			matriz[32][27] = 397;
+			matriz[32][28] = 960;
+			matriz[32][29] = 2309;
+			matriz[32][30] = 1184;
+
+			matriz[32][31] = 534;
+
+			//(31,20)....(31,30) 
+
+			matriz[31][20] = 857;
+
+			matriz[31][21] = 1312;
+			matriz[31][22] = 1358;
+			matriz[31][23] = 1512;
+			matriz[31][24] = 1173;
+			matriz[31][25] = 2731;
+			matriz[31][26] = 470;
+			matriz[31][27] = 772;
+			matriz[31][28] = 1403;
+			matriz[31][29] = 2706;
+			matriz[31][30] = 1627;
+
+			//(30,21)....(30,29)
+
+			matriz[30][21] = 1313;
+			matriz[30][22] = 358;
+			matriz[30][23] = 1152;
+			matriz[30][24] = 2270;
+			matriz[30][25] = 2446;
+			matriz[30][26] = 1157;
+			matriz[30][27] = 1137;
+			matriz[30][28] = 224;
+			matriz[30][29] = 2021;
+
+			//(29,22)....(29,28)
+
+			matriz[29][22] = 2125;
+			matriz[29][23] = 1194;
+			matriz[29][24] = 3568;
+			matriz[29][25] = 633;
+			matriz[29][26] = 2236;
+			matriz[29][27] = 1996;
+			matriz[29][28] = 1797;
+
+			//(28,23)....(28,27)
+
+			matriz[28][23] = 928;
+			matriz[28][24] = 2046;
+			matriz[28][25] = 2222;
+			matriz[28][26] = 933;
+			matriz[28][27] = 913;
+
+			//(27,24)....(27,26)
+
+			matriz[27][24] = 1634;
+			matriz[27][25] = 2421;
+			matriz[27][26] = 302;
+
+
+			//(26,25)....(26,27)
+
+			matriz[26][25] = 2561;
+
+		return matriz;
+	}
+
+
+	//Ejecuta todo el proceso de la heuristica de Algoritmos Geneticos y devuelve el mejor Tour encontrado
+	public Tour genetico(){
+		int[][] matriz = generaMatriz();
+
+		/* Imprime la matriz (DEBUG)
+		for(int i=0;i<51;i++){
+			System.out.print("|");
+			for (int j=0;j<51;j++)
+				System.out.print(","+matriz[i][j]+",");
+			
+			System.out.println("|");	
+		}*/
+
+		Poblacion poblacion = new Poblacion();
+
+		poblacion.inicializa(5000,51,matriz);
+	
+		Tour best = poblacion.getMejor();
+		int distancia_best=0;
+		int rompe=0;
+		int generaciones=0;
+
+		System.out.println("Mejor Tour de esta generacion:"+best.toString(matriz));
+
+		for(int i=0;i<3000;i++){
+			poblacion = poblacion.evoluciona();
+			best = poblacion.getMejor();
+			System.out.println("Mejor Tour de esta generacion:"+best.toString(matriz));
+
+			if(best.getDistancia()<=distancia_best)
+				rompe++;
+			else{
+				distancia_best = best.getDistancia();
+				rompe=0;
+			}
+
+			//Si el mejor parece no mejorar despues de 10 iteraciones seguidas, se rompe el ciclo
+			if(rompe>500) //<----noté de manera experimental que dandole un numero muy alto ayuda al algoritmo a salir de minimos locales
+				break;
+
+			generaciones++;
+		}
+
+		System.out.println("-----------Mejor Tour encontrado:"+best.toString(matriz)+ " en " + generaciones +" generaciones-------------------");
+		
+		return best;
+	}
+
+}
